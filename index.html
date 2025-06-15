@@ -1,0 +1,27 @@
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Termo Multiplayer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+</head>
+<body>
+  <h1>Termo Multiplayer</h1>
+  
+  <div id="menu">
+    <button onclick="criarSala()">Criar Sala</button>
+    <input id="codigoSala" placeholder="Código da sala" />
+    <button onclick="entrarSala()">Entrar</button>
+  </div>
+
+  <div id="jogo" style="display:none;">
+    <div id="tabuleiro"></div>
+    <input id="palpite" maxlength="5" />
+    <button onclick="enviarPalpite()">Enviar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

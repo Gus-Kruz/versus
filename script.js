@@ -2,6 +2,7 @@ let salaAtual = "";
 let souJogador1 = false;
 let minhaPalavra = "";
 let palavraDoAdversario = "";
+let jogoIniciado = false;
 
 function gerarCodigoSala() {
   const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -74,8 +75,9 @@ function esperarPalavraDoAdversario() {
 
   firebase.database().ref(`salas/${salaAtual}/${jogadorAdversario}/${campo}`)
   .on("value", snapshot => {
-    if (snapshot.exists() && !palavraDoAdversario) {
+    if (snapshot.exists() && !palavraDoAdversario && !jogoIniciado) {
       palavraDoAdversario = snapshot.val();
+      jogoIniciado = true;  // evita múltiplas execuções
       iniciarJogo();
     }
   });

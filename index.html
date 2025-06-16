@@ -15,10 +15,17 @@
     <input id="codigoSala" placeholder="Código da sala" />
     <button onclick="entrarSala()">Entrar</button>
   </div>
+  
 
-  <div id="jogo" style="display:none;">
+  
+  <div id="jogo" style="display: none;">
+    <h2>Seus palpites:</h2>
     <div id="tabuleiro"></div>
-    <input id="palpite" maxlength="5" />
+
+    <h2>Palpites do adversário:</h2>
+    <div id="tabuleiroAdversario"></div>
+
+    <input type="text" id="palpite" maxlength="5">
     <button onclick="enviarPalpite()">Enviar</button>
   </div>
 

@@ -123,3 +123,26 @@ function mostrarPalpiteAdversario(palpite) {
 
   document.getElementById("tabuleiroAdversario").appendChild(linha);
 }
+function mostrarPalpite(palpite) {
+  const linha = document.createElement("div");
+
+  for (let i = 0; i < 5; i++) {
+    const letra = document.createElement("span");
+    letra.textContent = palpite[i].toUpperCase();
+
+    if (palpite[i] === palavraDoAdversario[i]) {
+      letra.style.backgroundColor = "green";
+    } else if (palavraDoAdversario.includes(palpite[i])) {
+      letra.style.backgroundColor = "orange";
+    } else {
+      letra.style.backgroundColor = "gray";
+    }
+
+    letra.style.color = "white";
+    letra.style.padding = "10px";
+    letra.style.margin = "2px";
+    linha.appendChild(letra);
+  }
+
+  document.getElementById("tabuleiro").appendChild(linha);
+}

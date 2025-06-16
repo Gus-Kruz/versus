@@ -87,7 +87,7 @@ function iniciarJogo() {
   document.getElementById("jogo").style.display = "block";
   const jogadorAdversario = souJogador1 ? "jogador2" : "jogador1";
   firebase.database().ref(`salas/${salaAtual}/${jogadorAdversario}/palpites`)
-    .on("child_added", snapshot => {
+    .once("child_added", snapshot => {
       const palpiteAdversario = snapshot.val();
       mostrarPalpiteAdversario(palpiteAdversario);
     });

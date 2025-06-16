@@ -100,7 +100,10 @@ function enviarPalpite() {
     alert("A palavra deve ter 5 letras.");
     return;
   }
-
+  if (!palavraDoAdversario) {
+  alert("Ainda não recebemos a palavra do adversário.");
+  return;
+  }
   mostrarPalpite(palpite);
   document.getElementById("palpite").value = "";
 

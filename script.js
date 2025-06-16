@@ -65,7 +65,7 @@ function esperarPalavraDoAdversario() {
   const jogadorAdversario = souJogador1 ? "jogador2" : "jogador1";
 
   firebase.database().ref(`salas/${salaAtual}/${jogadorAdversario}/${campo}`)
-    .on("value", snapshot => {
+    .once("value", snapshot => {
       if (snapshot.exists()) {
         palavraDoAdversario = snapshot.val();
         iniciarJogo();

@@ -113,7 +113,7 @@ function enviarPalpite() {
 }
 function mostrarPalpiteAdversario(palpite) {
   const linha = document.createElement("div");
-  linha.style.marginBottom = "15px"
+  linha.style.marginBottom = "25px"
   for (let i = 0; i < 5; i++) {
     const letra = document.createElement("span");
     letra.textContent = palpite[i].toUpperCase();
@@ -136,7 +136,7 @@ function mostrarPalpiteAdversario(palpite) {
 }
 function mostrarPalpite(palpite) {
   const linha = document.createElement("div");
-  linha.style.marginBottom = "15px"
+  linha.style.marginBottom = "25px"
   for (let i = 0; i < 5; i++) {
     const letra = document.createElement("span");
     letra.textContent = palpite[i].toUpperCase();

@@ -73,12 +73,12 @@ function esperarPalavraDoAdversario() {
   const jogadorAdversario = souJogador1 ? "jogador2" : "jogador1";
 
   firebase.database().ref(`salas/${salaAtual}/${jogadorAdversario}/${campo}`)
-    .on("value", snapshot => {
-      if (snapshot.exists()) {
-        palavraDoAdversario = snapshot.val();
-        iniciarJogo();
-      }
-    });
+  .on("value", snapshot => {
+    if (snapshot.exists() && !palavraDoAdversario) {
+      palavraDoAdversario = snapshot.val();
+      iniciarJogo();
+    }
+  });
 }
 
 // Começa o jogo
@@ -87,7 +87,7 @@ function iniciarJogo() {
   document.getElementById("jogo").style.display = "block";
   const jogadorAdversario = souJogador1 ? "jogador2" : "jogador1";
   firebase.database().ref(`salas/${salaAtual}/${jogadorAdversario}/palpites`)
-    .once("child_added", snapshot => {
+    .on("child_added", snapshot => {
       const palpiteAdversario = snapshot.val();
       mostrarPalpiteAdversario(palpiteAdversario);
     });

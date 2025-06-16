@@ -94,18 +94,16 @@ function enviarPalpite() {
   const jogador = souJogador1 ? "jogador1" : "jogador2";
   firebase.database().ref(`salas/${salaAtual}/${jogador}/palpites`).push(palpite);
 }
-
-// Mostra palpite colorido
-function mostrarPalpite(palpite) {
+function mostrarPalpiteAdversario(palpite) {
   const linha = document.createElement("div");
 
   for (let i = 0; i < 5; i++) {
     const letra = document.createElement("span");
     letra.textContent = palpite[i].toUpperCase();
 
-    if (palpite[i] === palavraDoAdversario[i]) {
+    if (palpite[i] === minhaPalavra[i]) {
       letra.style.backgroundColor = "green";
-    } else if (palavraDoAdversario.includes(palpite[i])) {
+    } else if (minhaPalavra.includes(palpite[i])) {
       letra.style.backgroundColor = "orange";
     } else {
       letra.style.backgroundColor = "gray";
@@ -117,5 +115,5 @@ function mostrarPalpite(palpite) {
     linha.appendChild(letra);
   }
 
-  document.getElementById("tabuleiro").appendChild(linha);
+  document.getElementById("tabuleiroAdversario").appendChild(linha);
 }

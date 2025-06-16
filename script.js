@@ -77,6 +77,12 @@ function esperarPalavraDoAdversario() {
 function iniciarJogo() {
   document.getElementById("menu").style.display = "none";
   document.getElementById("jogo").style.display = "block";
+  const jogadorAdversario = souJogador1 ? "jogador2" : "jogador1";
+  firebase.database().ref(`salas/${salaAtual}/${jogadorAdversario}/palpites`)
+    .on("child_added", snapshot => {
+      const palpiteAdversario = snapshot.val();
+      mostrarPalpiteAdversario(palpiteAdversario);
+    });
 }
 
 // Jogador envia um palpite

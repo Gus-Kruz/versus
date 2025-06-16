@@ -72,17 +72,23 @@ function pedirPalavra() {
 function esperarPalavraDoAdversario() {
   const campo = souJogador1 ? "palavraParaJ1" : "palavraParaJ2";
   const jogadorAdversario = souJogador1 ? "jogador2" : "jogador1";
+  const ref = firebase.database().ref(`salas/${salaAtual}/${jogadorAdversario}/${campo}`);
 
-  firebase.database().ref(`salas/${salaAtual}/${jogadorAdversario}/${campo}`)
-  .on("value", snapshot => {
-    if (snapshot.exists() && !palavraDoAdversario && !jogoIniciado) {
-      palavraDoAdversario = snapshot.val();
-      jogoIniciado = true;  // evita múltiplas execuções
+  const listener = ref.on("value", snapshot => {
+    const palavra = snapshot.val();
+
+    // só executa se ainda não recebemos
+    if (palavra && !palavraDoAdversario) {
+      palavraDoAdversario = palavra;
+
+      // remove o listener imediatamente após receber
+      ref.off("value", listener);
+
+      // iniciar o jogo agora
       iniciarJogo();
     }
   });
 }
-
 // Começa o jogo
 function iniciarJogo() {
   document.getElementById("menu").style.display = "none";
